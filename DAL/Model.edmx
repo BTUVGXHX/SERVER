@@ -1,0 +1,725 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="VolunteerPlacementSystemDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="daysForAVolunteer">
+          <Key>
+            <PropertyRef Name="daysForAVolunteerCode" />
+          </Key>
+          <Property Name="daysForAVolunteerCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dayInTheWeek" Type="int" Nullable="false" />
+          <Property Name="beginningTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="endTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="VolunteerOffersCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="embeddedVolunteers">
+          <Key>
+            <PropertyRef Name="embeddedVolunteersCode" />
+          </Key>
+          <Property Name="embeddedVolunteersCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="volunteerCode" Type="int" Nullable="false" />
+          <Property Name="volunteeringDate" Type="date" Nullable="false" />
+          <Property Name="wardCode" Type="int" Nullable="false" />
+          <Property Name="roleCode" Type="int" Nullable="false" />
+          <Property Name="beginningTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="endTime" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="roleForVolunteer">
+          <Key>
+            <PropertyRef Name="roleForVolunteerCode" />
+          </Key>
+          <Property Name="roleForVolunteerCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="volunteerCode" Type="int" Nullable="false" />
+          <Property Name="roleCode" Type="int" Nullable="false" />
+          <Property Name="priorityLevelRoleForVolunteer" Type="int" Nullable="false" />
+          <Property Name="volunteerPriorityLevel" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="roleCode" />
+          </Key>
+          <Property Name="roleCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="roleDescription" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VolunteerHoursByWard">
+          <Key>
+            <PropertyRef Name="volunteerHoursByWardCodes" />
+          </Key>
+          <Property Name="volunteerHoursByWardCodes" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="wardCode" Type="int" Nullable="false" />
+          <Property Name="beginningTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="EndTime" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="volunteeringForWard">
+          <Key>
+            <PropertyRef Name="volunteeringForWardCode" />
+          </Key>
+          <Property Name="volunteeringForWardCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="wardCode" Type="int" Nullable="false" />
+          <Property Name="roleCode" Type="int" Nullable="false" />
+          <Property Name="numberVolunteersForWard" Type="int" Nullable="false" />
+          <Property Name="beginningTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="endTime" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VolunteerOffers">
+          <Key>
+            <PropertyRef Name="VolunteerOffersCode" />
+          </Key>
+          <Property Name="VolunteerOffersCode" Type="int" Nullable="false" />
+          <Property Name="VolunteerCode" Type="int" Nullable="false" />
+          <Property Name="TotalNumberOfHoursPerWeek" Type="int" Nullable="false" />
+          <Property Name="flexible" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Volunteers">
+          <Key>
+            <PropertyRef Name="VolunteerCode" />
+          </Key>
+          <Property Name="VolunteerCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VolunteerID" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="VolunteerFirstName" Type="nvarchar" MaxLength="10" />
+          <Property Name="VolunteerLastName" Type="nvarchar" MaxLength="10" />
+          <Property Name="VolunteerDateOfBirth" Type="date" Nullable="false" />
+          <Property Name="VolunteerPhone" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="VolunteerAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VolunteerGmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VolunteerPassword" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="volunteerUsername" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wardDirectors">
+          <Key>
+            <PropertyRef Name="wardDirectorCode" />
+          </Key>
+          <Property Name="wardDirectorCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="wardDirectorID" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="wardDirectorFirstName" Type="nvarchar" MaxLength="10" />
+          <Property Name="wardDirectorLastName" Type="nvarchar" MaxLength="10" />
+          <Property Name="wardDirectorPassword" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="wardDirectorUsername" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="wardCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wards">
+          <Key>
+            <PropertyRef Name="wardCode" />
+          </Key>
+          <Property Name="wardCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="wardName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__daysForAV__Volun__0A9D95DB">
+          <End Role="VolunteerOffers" Type="Self.VolunteerOffers" Multiplicity="1" />
+          <End Role="daysForAVolunteer" Type="Self.daysForAVolunteer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VolunteerOffers">
+              <PropertyRef Name="VolunteerOffersCode" />
+            </Principal>
+            <Dependent Role="daysForAVolunteer">
+              <PropertyRef Name="VolunteerOffersCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__embeddedV__roleC__25518C17">
+          <End Role="roles" Type="Self.roles" Multiplicity="1" />
+          <End Role="embeddedVolunteers" Type="Self.embeddedVolunteers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="roleCode" />
+            </Principal>
+            <Dependent Role="embeddedVolunteers">
+              <PropertyRef Name="roleCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__embeddedV__volun__06CD04F7">
+          <End Role="Volunteers" Type="Self.Volunteers" Multiplicity="1" />
+          <End Role="embeddedVolunteers" Type="Self.embeddedVolunteers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Volunteers">
+              <PropertyRef Name="VolunteerCode" />
+            </Principal>
+            <Dependent Role="embeddedVolunteers">
+              <PropertyRef Name="volunteerCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__embeddedV__wardC__18EBB532">
+          <End Role="wards" Type="Self.wards" Multiplicity="1" />
+          <End Role="embeddedVolunteers" Type="Self.embeddedVolunteers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wards">
+              <PropertyRef Name="wardCode" />
+            </Principal>
+            <Dependent Role="embeddedVolunteers">
+              <PropertyRef Name="wardCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__roleForVo__volun__02FC7413">
+          <End Role="Volunteers" Type="Self.Volunteers" Multiplicity="1" />
+          <End Role="roleForVolunteer" Type="Self.roleForVolunteer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Volunteers">
+              <PropertyRef Name="VolunteerCode" />
+            </Principal>
+            <Dependent Role="roleForVolunteer">
+              <PropertyRef Name="volunteerCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__volunteer__roleC__2645B050">
+          <End Role="roles" Type="Self.roles" Multiplicity="1" />
+          <End Role="volunteeringForWard" Type="Self.volunteeringForWard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="roleCode" />
+            </Principal>
+            <Dependent Role="volunteeringForWard">
+              <PropertyRef Name="roleCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Volunteer__Volun__5AEE82B9">
+          <End Role="Volunteers" Type="Self.Volunteers" Multiplicity="1" />
+          <End Role="VolunteerOffers" Type="Self.VolunteerOffers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Volunteers">
+              <PropertyRef Name="VolunteerCode" />
+            </Principal>
+            <Dependent Role="VolunteerOffers">
+              <PropertyRef Name="VolunteerCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Volunteer__wardC__208CD6FA">
+          <End Role="wards" Type="Self.wards" Multiplicity="1" />
+          <End Role="VolunteerHoursByWard" Type="Self.VolunteerHoursByWard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wards">
+              <PropertyRef Name="wardCode" />
+            </Principal>
+            <Dependent Role="VolunteerHoursByWard">
+              <PropertyRef Name="wardCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__volunteer__wardC__2180FB33">
+          <End Role="wards" Type="Self.wards" Multiplicity="1" />
+          <End Role="volunteeringForWard" Type="Self.volunteeringForWard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wards">
+              <PropertyRef Name="wardCode" />
+            </Principal>
+            <Dependent Role="volunteeringForWard">
+              <PropertyRef Name="wardCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__wardDirec__wardC__1BC821DD">
+          <End Role="wards" Type="Self.wards" Multiplicity="1" />
+          <End Role="wardDirectors" Type="Self.wardDirectors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wards">
+              <PropertyRef Name="wardCode" />
+            </Principal>
+            <Dependent Role="wardDirectors">
+              <PropertyRef Name="wardCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VolunteerPlacementSystemDBModelStoreContainer">
+          <EntitySet Name="daysForAVolunteer" EntityType="Self.daysForAVolunteer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="embeddedVolunteers" EntityType="Self.embeddedVolunteers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="roleForVolunteer" EntityType="Self.roleForVolunteer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="roles" EntityType="Self.roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VolunteerHoursByWard" EntityType="Self.VolunteerHoursByWard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="volunteeringForWard" EntityType="Self.volunteeringForWard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VolunteerOffers" EntityType="Self.VolunteerOffers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Volunteers" EntityType="Self.Volunteers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wardDirectors" EntityType="Self.wardDirectors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wards" EntityType="Self.wards" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__daysForAV__Volun__0A9D95DB" Association="Self.FK__daysForAV__Volun__0A9D95DB">
+            <End Role="VolunteerOffers" EntitySet="VolunteerOffers" />
+            <End Role="daysForAVolunteer" EntitySet="daysForAVolunteer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__embeddedV__roleC__25518C17" Association="Self.FK__embeddedV__roleC__25518C17">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="embeddedVolunteers" EntitySet="embeddedVolunteers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__embeddedV__volun__06CD04F7" Association="Self.FK__embeddedV__volun__06CD04F7">
+            <End Role="Volunteers" EntitySet="Volunteers" />
+            <End Role="embeddedVolunteers" EntitySet="embeddedVolunteers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__embeddedV__wardC__18EBB532" Association="Self.FK__embeddedV__wardC__18EBB532">
+            <End Role="wards" EntitySet="wards" />
+            <End Role="embeddedVolunteers" EntitySet="embeddedVolunteers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__roleForVo__volun__02FC7413" Association="Self.FK__roleForVo__volun__02FC7413">
+            <End Role="Volunteers" EntitySet="Volunteers" />
+            <End Role="roleForVolunteer" EntitySet="roleForVolunteer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__volunteer__roleC__2645B050" Association="Self.FK__volunteer__roleC__2645B050">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="volunteeringForWard" EntitySet="volunteeringForWard" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Volunteer__Volun__5AEE82B9" Association="Self.FK__Volunteer__Volun__5AEE82B9">
+            <End Role="Volunteers" EntitySet="Volunteers" />
+            <End Role="VolunteerOffers" EntitySet="VolunteerOffers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Volunteer__wardC__208CD6FA" Association="Self.FK__Volunteer__wardC__208CD6FA">
+            <End Role="wards" EntitySet="wards" />
+            <End Role="VolunteerHoursByWard" EntitySet="VolunteerHoursByWard" />
+          </AssociationSet>
+          <AssociationSet Name="FK__volunteer__wardC__2180FB33" Association="Self.FK__volunteer__wardC__2180FB33">
+            <End Role="wards" EntitySet="wards" />
+            <End Role="volunteeringForWard" EntitySet="volunteeringForWard" />
+          </AssociationSet>
+          <AssociationSet Name="FK__wardDirec__wardC__1BC821DD" Association="Self.FK__wardDirec__wardC__1BC821DD">
+            <End Role="wards" EntitySet="wards" />
+            <End Role="wardDirectors" EntitySet="wardDirectors" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VolunteerPlacementSystemDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="daysForAVolunteer">
+          <Key>
+            <PropertyRef Name="daysForAVolunteerCode" />
+          </Key>
+          <Property Name="daysForAVolunteerCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dayInTheWeek" Type="Int32" Nullable="false" />
+          <Property Name="beginningTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="endTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="VolunteerOffersCode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="VolunteerOffer" Relationship="Self.FK__daysForAV__Volun__0A9D95DB" FromRole="daysForAVolunteer" ToRole="VolunteerOffers" />
+        </EntityType>
+        <EntityType Name="embeddedVolunteer">
+          <Key>
+            <PropertyRef Name="embeddedVolunteersCode" />
+          </Key>
+          <Property Name="embeddedVolunteersCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="volunteerCode" Type="Int32" Nullable="false" />
+          <Property Name="volunteeringDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="wardCode" Type="Int32" Nullable="false" />
+          <Property Name="roleCode" Type="Int32" Nullable="false" />
+          <Property Name="beginningTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="endTime" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="role" Relationship="Self.FK__embeddedV__roleC__25518C17" FromRole="embeddedVolunteers" ToRole="roles" />
+          <NavigationProperty Name="Volunteer" Relationship="Self.FK__embeddedV__volun__06CD04F7" FromRole="embeddedVolunteers" ToRole="Volunteers" />
+          <NavigationProperty Name="ward" Relationship="Self.FK__embeddedV__wardC__18EBB532" FromRole="embeddedVolunteers" ToRole="wards" />
+        </EntityType>
+        <EntityType Name="roleForVolunteer">
+          <Key>
+            <PropertyRef Name="roleForVolunteerCode" />
+          </Key>
+          <Property Name="roleForVolunteerCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="volunteerCode" Type="Int32" Nullable="false" />
+          <Property Name="roleCode" Type="Int32" Nullable="false" />
+          <Property Name="priorityLevelRoleForVolunteer" Type="Int32" Nullable="false" />
+          <Property Name="volunteerPriorityLevel" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Volunteer" Relationship="Self.FK__roleForVo__volun__02FC7413" FromRole="roleForVolunteer" ToRole="Volunteers" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="roleCode" />
+          </Key>
+          <Property Name="roleCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="roleDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="embeddedVolunteers" Relationship="Self.FK__embeddedV__roleC__25518C17" FromRole="roles" ToRole="embeddedVolunteers" />
+          <NavigationProperty Name="volunteeringForWards" Relationship="Self.FK__volunteer__roleC__2645B050" FromRole="roles" ToRole="volunteeringForWard" />
+        </EntityType>
+        <EntityType Name="VolunteerHoursByWard">
+          <Key>
+            <PropertyRef Name="volunteerHoursByWardCodes" />
+          </Key>
+          <Property Name="volunteerHoursByWardCodes" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="wardCode" Type="Int32" Nullable="false" />
+          <Property Name="beginningTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="EndTime" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="ward" Relationship="Self.FK__Volunteer__wardC__208CD6FA" FromRole="VolunteerHoursByWard" ToRole="wards" />
+        </EntityType>
+        <EntityType Name="volunteeringForWard">
+          <Key>
+            <PropertyRef Name="volunteeringForWardCode" />
+          </Key>
+          <Property Name="volunteeringForWardCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="wardCode" Type="Int32" Nullable="false" />
+          <Property Name="roleCode" Type="Int32" Nullable="false" />
+          <Property Name="numberVolunteersForWard" Type="Int32" Nullable="false" />
+          <Property Name="beginningTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="endTime" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="role" Relationship="Self.FK__volunteer__roleC__2645B050" FromRole="volunteeringForWard" ToRole="roles" />
+          <NavigationProperty Name="ward" Relationship="Self.FK__volunteer__wardC__2180FB33" FromRole="volunteeringForWard" ToRole="wards" />
+        </EntityType>
+        <EntityType Name="VolunteerOffer">
+          <Key>
+            <PropertyRef Name="VolunteerOffersCode" />
+          </Key>
+          <Property Name="VolunteerOffersCode" Type="Int32" Nullable="false" />
+          <Property Name="VolunteerCode" Type="Int32" Nullable="false" />
+          <Property Name="TotalNumberOfHoursPerWeek" Type="Int32" Nullable="false" />
+          <Property Name="flexible" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="daysForAVolunteers" Relationship="Self.FK__daysForAV__Volun__0A9D95DB" FromRole="VolunteerOffers" ToRole="daysForAVolunteer" />
+          <NavigationProperty Name="Volunteer" Relationship="Self.FK__Volunteer__Volun__5AEE82B9" FromRole="VolunteerOffers" ToRole="Volunteers" />
+        </EntityType>
+        <EntityType Name="Volunteer">
+          <Key>
+            <PropertyRef Name="VolunteerCode" />
+          </Key>
+          <Property Name="VolunteerCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VolunteerID" Type="String" MaxLength="9" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VolunteerFirstName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="VolunteerLastName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="VolunteerDateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="VolunteerPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VolunteerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VolunteerGmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VolunteerPassword" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="volunteerUsername" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="embeddedVolunteers" Relationship="Self.FK__embeddedV__volun__06CD04F7" FromRole="Volunteers" ToRole="embeddedVolunteers" />
+          <NavigationProperty Name="roleForVolunteers" Relationship="Self.FK__roleForVo__volun__02FC7413" FromRole="Volunteers" ToRole="roleForVolunteer" />
+          <NavigationProperty Name="VolunteerOffers" Relationship="Self.FK__Volunteer__Volun__5AEE82B9" FromRole="Volunteers" ToRole="VolunteerOffers" />
+        </EntityType>
+        <EntityType Name="wardDirector">
+          <Key>
+            <PropertyRef Name="wardDirectorCode" />
+          </Key>
+          <Property Name="wardDirectorCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="wardDirectorID" Type="String" MaxLength="9" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="wardDirectorFirstName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="wardDirectorLastName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="wardDirectorPassword" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="wardDirectorUsername" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="wardCode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ward" Relationship="Self.FK__wardDirec__wardC__1BC821DD" FromRole="wardDirectors" ToRole="wards" />
+        </EntityType>
+        <EntityType Name="ward">
+          <Key>
+            <PropertyRef Name="wardCode" />
+          </Key>
+          <Property Name="wardCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="wardName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="embeddedVolunteers" Relationship="Self.FK__embeddedV__wardC__18EBB532" FromRole="wards" ToRole="embeddedVolunteers" />
+          <NavigationProperty Name="VolunteerHoursByWards" Relationship="Self.FK__Volunteer__wardC__208CD6FA" FromRole="wards" ToRole="VolunteerHoursByWard" />
+          <NavigationProperty Name="volunteeringForWards" Relationship="Self.FK__volunteer__wardC__2180FB33" FromRole="wards" ToRole="volunteeringForWard" />
+          <NavigationProperty Name="wardDirectors" Relationship="Self.FK__wardDirec__wardC__1BC821DD" FromRole="wards" ToRole="wardDirectors" />
+        </EntityType>
+        <Association Name="FK__daysForAV__Volun__0A9D95DB">
+          <End Role="VolunteerOffers" Type="Self.VolunteerOffer" Multiplicity="1" />
+          <End Role="daysForAVolunteer" Type="Self.daysForAVolunteer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VolunteerOffers">
+              <PropertyRef Name="VolunteerOffersCode" />
+            </Principal>
+            <Dependent Role="daysForAVolunteer">
+              <PropertyRef Name="VolunteerOffersCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__embeddedV__roleC__25518C17">
+          <End Role="roles" Type="Self.role" Multiplicity="1" />
+          <End Role="embeddedVolunteers" Type="Self.embeddedVolunteer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="roleCode" />
+            </Principal>
+            <Dependent Role="embeddedVolunteers">
+              <PropertyRef Name="roleCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__embeddedV__volun__06CD04F7">
+          <End Role="Volunteers" Type="Self.Volunteer" Multiplicity="1" />
+          <End Role="embeddedVolunteers" Type="Self.embeddedVolunteer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Volunteers">
+              <PropertyRef Name="VolunteerCode" />
+            </Principal>
+            <Dependent Role="embeddedVolunteers">
+              <PropertyRef Name="volunteerCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__embeddedV__wardC__18EBB532">
+          <End Role="wards" Type="Self.ward" Multiplicity="1" />
+          <End Role="embeddedVolunteers" Type="Self.embeddedVolunteer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wards">
+              <PropertyRef Name="wardCode" />
+            </Principal>
+            <Dependent Role="embeddedVolunteers">
+              <PropertyRef Name="wardCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__roleForVo__volun__02FC7413">
+          <End Role="Volunteers" Type="Self.Volunteer" Multiplicity="1" />
+          <End Role="roleForVolunteer" Type="Self.roleForVolunteer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Volunteers">
+              <PropertyRef Name="VolunteerCode" />
+            </Principal>
+            <Dependent Role="roleForVolunteer">
+              <PropertyRef Name="volunteerCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__volunteer__roleC__2645B050">
+          <End Role="roles" Type="Self.role" Multiplicity="1" />
+          <End Role="volunteeringForWard" Type="Self.volunteeringForWard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="roleCode" />
+            </Principal>
+            <Dependent Role="volunteeringForWard">
+              <PropertyRef Name="roleCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Volunteer__wardC__208CD6FA">
+          <End Role="wards" Type="Self.ward" Multiplicity="1" />
+          <End Role="VolunteerHoursByWard" Type="Self.VolunteerHoursByWard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wards">
+              <PropertyRef Name="wardCode" />
+            </Principal>
+            <Dependent Role="VolunteerHoursByWard">
+              <PropertyRef Name="wardCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__volunteer__wardC__2180FB33">
+          <End Role="wards" Type="Self.ward" Multiplicity="1" />
+          <End Role="volunteeringForWard" Type="Self.volunteeringForWard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wards">
+              <PropertyRef Name="wardCode" />
+            </Principal>
+            <Dependent Role="volunteeringForWard">
+              <PropertyRef Name="wardCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Volunteer__Volun__5AEE82B9">
+          <End Role="Volunteers" Type="Self.Volunteer" Multiplicity="1" />
+          <End Role="VolunteerOffers" Type="Self.VolunteerOffer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Volunteers">
+              <PropertyRef Name="VolunteerCode" />
+            </Principal>
+            <Dependent Role="VolunteerOffers">
+              <PropertyRef Name="VolunteerCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__wardDirec__wardC__1BC821DD">
+          <End Role="wards" Type="Self.ward" Multiplicity="1" />
+          <End Role="wardDirectors" Type="Self.wardDirector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wards">
+              <PropertyRef Name="wardCode" />
+            </Principal>
+            <Dependent Role="wardDirectors">
+              <PropertyRef Name="wardCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VolunteerPlacementSystemDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="daysForAVolunteers" EntityType="Self.daysForAVolunteer" />
+          <EntitySet Name="embeddedVolunteers" EntityType="Self.embeddedVolunteer" />
+          <EntitySet Name="roleForVolunteers" EntityType="Self.roleForVolunteer" />
+          <EntitySet Name="roles" EntityType="Self.role" />
+          <EntitySet Name="VolunteerHoursByWards" EntityType="Self.VolunteerHoursByWard" />
+          <EntitySet Name="volunteeringForWards" EntityType="Self.volunteeringForWard" />
+          <EntitySet Name="VolunteerOffers" EntityType="Self.VolunteerOffer" />
+          <EntitySet Name="Volunteers" EntityType="Self.Volunteer" />
+          <EntitySet Name="wardDirectors" EntityType="Self.wardDirector" />
+          <EntitySet Name="wards" EntityType="Self.ward" />
+          <AssociationSet Name="FK__daysForAV__Volun__0A9D95DB" Association="Self.FK__daysForAV__Volun__0A9D95DB">
+            <End Role="VolunteerOffers" EntitySet="VolunteerOffers" />
+            <End Role="daysForAVolunteer" EntitySet="daysForAVolunteers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__embeddedV__roleC__25518C17" Association="Self.FK__embeddedV__roleC__25518C17">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="embeddedVolunteers" EntitySet="embeddedVolunteers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__embeddedV__volun__06CD04F7" Association="Self.FK__embeddedV__volun__06CD04F7">
+            <End Role="Volunteers" EntitySet="Volunteers" />
+            <End Role="embeddedVolunteers" EntitySet="embeddedVolunteers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__embeddedV__wardC__18EBB532" Association="Self.FK__embeddedV__wardC__18EBB532">
+            <End Role="wards" EntitySet="wards" />
+            <End Role="embeddedVolunteers" EntitySet="embeddedVolunteers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__roleForVo__volun__02FC7413" Association="Self.FK__roleForVo__volun__02FC7413">
+            <End Role="Volunteers" EntitySet="Volunteers" />
+            <End Role="roleForVolunteer" EntitySet="roleForVolunteers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__volunteer__roleC__2645B050" Association="Self.FK__volunteer__roleC__2645B050">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="volunteeringForWard" EntitySet="volunteeringForWards" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Volunteer__wardC__208CD6FA" Association="Self.FK__Volunteer__wardC__208CD6FA">
+            <End Role="wards" EntitySet="wards" />
+            <End Role="VolunteerHoursByWard" EntitySet="VolunteerHoursByWards" />
+          </AssociationSet>
+          <AssociationSet Name="FK__volunteer__wardC__2180FB33" Association="Self.FK__volunteer__wardC__2180FB33">
+            <End Role="wards" EntitySet="wards" />
+            <End Role="volunteeringForWard" EntitySet="volunteeringForWards" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Volunteer__Volun__5AEE82B9" Association="Self.FK__Volunteer__Volun__5AEE82B9">
+            <End Role="Volunteers" EntitySet="Volunteers" />
+            <End Role="VolunteerOffers" EntitySet="VolunteerOffers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__wardDirec__wardC__1BC821DD" Association="Self.FK__wardDirec__wardC__1BC821DD">
+            <End Role="wards" EntitySet="wards" />
+            <End Role="wardDirectors" EntitySet="wardDirectors" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VolunteerPlacementSystemDBModelStoreContainer" CdmEntityContainer="VolunteerPlacementSystemDBEntities1">
+          <EntitySetMapping Name="daysForAVolunteers">
+            <EntityTypeMapping TypeName="VolunteerPlacementSystemDBModel.daysForAVolunteer">
+              <MappingFragment StoreEntitySet="daysForAVolunteer">
+                <ScalarProperty Name="daysForAVolunteerCode" ColumnName="daysForAVolunteerCode" />
+                <ScalarProperty Name="dayInTheWeek" ColumnName="dayInTheWeek" />
+                <ScalarProperty Name="beginningTime" ColumnName="beginningTime" />
+                <ScalarProperty Name="endTime" ColumnName="endTime" />
+                <ScalarProperty Name="VolunteerOffersCode" ColumnName="VolunteerOffersCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="embeddedVolunteers">
+            <EntityTypeMapping TypeName="VolunteerPlacementSystemDBModel.embeddedVolunteer">
+              <MappingFragment StoreEntitySet="embeddedVolunteers">
+                <ScalarProperty Name="embeddedVolunteersCode" ColumnName="embeddedVolunteersCode" />
+                <ScalarProperty Name="volunteerCode" ColumnName="volunteerCode" />
+                <ScalarProperty Name="volunteeringDate" ColumnName="volunteeringDate" />
+                <ScalarProperty Name="wardCode" ColumnName="wardCode" />
+                <ScalarProperty Name="roleCode" ColumnName="roleCode" />
+                <ScalarProperty Name="beginningTime" ColumnName="beginningTime" />
+                <ScalarProperty Name="endTime" ColumnName="endTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roleForVolunteers">
+            <EntityTypeMapping TypeName="VolunteerPlacementSystemDBModel.roleForVolunteer">
+              <MappingFragment StoreEntitySet="roleForVolunteer">
+                <ScalarProperty Name="roleForVolunteerCode" ColumnName="roleForVolunteerCode" />
+                <ScalarProperty Name="volunteerCode" ColumnName="volunteerCode" />
+                <ScalarProperty Name="roleCode" ColumnName="roleCode" />
+                <ScalarProperty Name="priorityLevelRoleForVolunteer" ColumnName="priorityLevelRoleForVolunteer" />
+                <ScalarProperty Name="volunteerPriorityLevel" ColumnName="volunteerPriorityLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="VolunteerPlacementSystemDBModel.role">
+              <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="roleCode" ColumnName="roleCode" />
+                <ScalarProperty Name="roleName" ColumnName="roleName" />
+                <ScalarProperty Name="roleDescription" ColumnName="roleDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VolunteerHoursByWards">
+            <EntityTypeMapping TypeName="VolunteerPlacementSystemDBModel.VolunteerHoursByWard">
+              <MappingFragment StoreEntitySet="VolunteerHoursByWard">
+                <ScalarProperty Name="volunteerHoursByWardCodes" ColumnName="volunteerHoursByWardCodes" />
+                <ScalarProperty Name="wardCode" ColumnName="wardCode" />
+                <ScalarProperty Name="beginningTime" ColumnName="beginningTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="volunteeringForWards">
+            <EntityTypeMapping TypeName="VolunteerPlacementSystemDBModel.volunteeringForWard">
+              <MappingFragment StoreEntitySet="volunteeringForWard">
+                <ScalarProperty Name="volunteeringForWardCode" ColumnName="volunteeringForWardCode" />
+                <ScalarProperty Name="wardCode" ColumnName="wardCode" />
+                <ScalarProperty Name="roleCode" ColumnName="roleCode" />
+                <ScalarProperty Name="numberVolunteersForWard" ColumnName="numberVolunteersForWard" />
+                <ScalarProperty Name="beginningTime" ColumnName="beginningTime" />
+                <ScalarProperty Name="endTime" ColumnName="endTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VolunteerOffers">
+            <EntityTypeMapping TypeName="VolunteerPlacementSystemDBModel.VolunteerOffer">
+              <MappingFragment StoreEntitySet="VolunteerOffers">
+                <ScalarProperty Name="VolunteerOffersCode" ColumnName="VolunteerOffersCode" />
+                <ScalarProperty Name="VolunteerCode" ColumnName="VolunteerCode" />
+                <ScalarProperty Name="TotalNumberOfHoursPerWeek" ColumnName="TotalNumberOfHoursPerWeek" />
+                <ScalarProperty Name="flexible" ColumnName="flexible" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Volunteers">
+            <EntityTypeMapping TypeName="VolunteerPlacementSystemDBModel.Volunteer">
+              <MappingFragment StoreEntitySet="Volunteers">
+                <ScalarProperty Name="VolunteerCode" ColumnName="VolunteerCode" />
+                <ScalarProperty Name="VolunteerID" ColumnName="VolunteerID" />
+                <ScalarProperty Name="VolunteerFirstName" ColumnName="VolunteerFirstName" />
+                <ScalarProperty Name="VolunteerLastName" ColumnName="VolunteerLastName" />
+                <ScalarProperty Name="VolunteerDateOfBirth" ColumnName="VolunteerDateOfBirth" />
+                <ScalarProperty Name="VolunteerPhone" ColumnName="VolunteerPhone" />
+                <ScalarProperty Name="VolunteerAddress" ColumnName="VolunteerAddress" />
+                <ScalarProperty Name="VolunteerGmail" ColumnName="VolunteerGmail" />
+                <ScalarProperty Name="VolunteerPassword" ColumnName="VolunteerPassword" />
+                <ScalarProperty Name="volunteerUsername" ColumnName="volunteerUsername" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wardDirectors">
+            <EntityTypeMapping TypeName="VolunteerPlacementSystemDBModel.wardDirector">
+              <MappingFragment StoreEntitySet="wardDirectors">
+                <ScalarProperty Name="wardDirectorCode" ColumnName="wardDirectorCode" />
+                <ScalarProperty Name="wardDirectorID" ColumnName="wardDirectorID" />
+                <ScalarProperty Name="wardDirectorFirstName" ColumnName="wardDirectorFirstName" />
+                <ScalarProperty Name="wardDirectorLastName" ColumnName="wardDirectorLastName" />
+                <ScalarProperty Name="wardDirectorPassword" ColumnName="wardDirectorPassword" />
+                <ScalarProperty Name="wardDirectorUsername" ColumnName="wardDirectorUsername" />
+                <ScalarProperty Name="wardCode" ColumnName="wardCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wards">
+            <EntityTypeMapping TypeName="VolunteerPlacementSystemDBModel.ward">
+              <MappingFragment StoreEntitySet="wards">
+                <ScalarProperty Name="wardCode" ColumnName="wardCode" />
+                <ScalarProperty Name="wardName" ColumnName="wardName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
