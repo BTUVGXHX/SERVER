@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e65d17ee1e8846c98822f3b5647eb61a" Name="Diagram1" ZoomLevel="95">
-        <EntityTypeShape EntityType="VolunteerPlacementSystemDBModel.daysForAVolunteer" Width="1.875" PointX="9.125" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerPlacementSystemDBModel.embeddedVolunteer" Width="1.75" PointX="2.125" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerPlacementSystemDBModel.roleForVolunteer" Width="1.875" PointX="2.125" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerPlacementSystemDBModel.role" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerPlacementSystemDBModel.VolunteerHoursByWard" Width="2.25" PointX="8.125" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerPlacementSystemDBModel.volunteeringForWard" Width="2" PointX="4" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerPlacementSystemDBModel.VolunteerOffer" Width="2.125" PointX="6.75" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerPlacementSystemDBModel.Volunteer" Width="1.5" PointX="0.5" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerPlacementSystemDBModel.wardDirector" Width="1.875" PointX="4.75" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerPlacementSystemDBModel.ward" Width="1.5" PointX="6.25" PointY="0.5" IsExpanded="true" />
+      <Diagram DiagramId="e65d17ee1e8846c98822f3b5647eb61a" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="VolunteerPlacementSystemDBModel.daysForAVolunteer" Width="1.875" PointX="10" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerPlacementSystemDBModel.embeddedVolunteer" Width="2" PointX="2.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerPlacementSystemDBModel.roleForVolunteer" Width="1.875" PointX="2.875" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerPlacementSystemDBModel.role" Width="1.875" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerPlacementSystemDBModel.VolunteerHoursByWard" Width="2.25" PointX="10.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerPlacementSystemDBModel.volunteeringForWard" Width="2" PointX="4.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerPlacementSystemDBModel.VolunteerOffer" Width="2.125" PointX="7.375" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerPlacementSystemDBModel.Volunteer" Width="1.875" PointX="0.5" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerPlacementSystemDBModel.wardDirector" Width="1.875" PointX="5.125" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerPlacementSystemDBModel.ward" Width="2.25" PointX="7.375" PointY="0.5" IsExpanded="true" />
         <AssociationConnector Association="VolunteerPlacementSystemDBModel.FK__daysForAV__Volun__0A9D95DB" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerPlacementSystemDBModel.FK__embeddedV__roleC__25518C17" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerPlacementSystemDBModel.FK__embeddedV__volun__06CD04F7" ManuallyRouted="false" />
@@ -23,8 +23,10 @@
         <AssociationConnector Association="VolunteerPlacementSystemDBModel.FK__volunteer__roleC__2645B050" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerPlacementSystemDBModel.FK__Volunteer__wardC__208CD6FA" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerPlacementSystemDBModel.FK__volunteer__wardC__2180FB33" ManuallyRouted="false" />
-        <AssociationConnector Association="VolunteerPlacementSystemDBModel.FK__Volunteer__Volun__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteerPlacementSystemDBModel.FK__Volunteer__Volun__5AEE82B9" ManuallyRouted="false" >
+        </AssociationConnector>
         <AssociationConnector Association="VolunteerPlacementSystemDBModel.FK__wardDirec__wardC__1BC821DD" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteerPlacementSystemDBModel.FK_roleForVolunteer_ToTable" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

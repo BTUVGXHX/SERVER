@@ -51,9 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="algorithm\Chromosome.cs" />
-    <Compile Include="algorithm\GeneticAlgorithm.cs" />
     <Compile Include="algorithm\InitialPopulation.cs" />
+    <Compile Include="algorithm\VolunteerinForWardLogicData.cs" />
     <Compile Include="algorithm\VolunteerLogicData.cs" />
     <Compile Include="algorithm\wardLogicData.cs" />
     <Compile Include="converts\daysForAVolunteerConverts.cs" />

@@ -19,6 +19,7 @@ namespace DAL
         {
             this.embeddedVolunteers = new HashSet<embeddedVolunteer>();
             this.volunteeringForWards = new HashSet<volunteeringForWard>();
+            this.roleForVolunteers = new HashSet<roleForVolunteer>();
         }
     
         public int roleCode { get; set; }
@@ -29,5 +30,7 @@ namespace DAL
         public virtual ICollection<embeddedVolunteer> embeddedVolunteers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<volunteeringForWard> volunteeringForWards { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<roleForVolunteer> roleForVolunteers { get; set; }
     }
 }

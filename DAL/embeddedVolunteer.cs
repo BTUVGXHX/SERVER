@@ -19,8 +19,9 @@ namespace DAL
         public System.DateTime volunteeringDate { get; set; }
         public int wardCode { get; set; }
         public int roleCode { get; set; }
-        public System.TimeSpan beginningTime { get; set; }
-        public System.TimeSpan endTime { get; set; }
+        public int beginningTime { get; set; }
+        public int endTime { get; set; }
+        public int totalVolunteeringHours { get; set; }
     
         public virtual role role { get; set; }
         public virtual Volunteer Volunteer { get; set; }

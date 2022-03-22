@@ -13,8 +13,8 @@ namespace DTO
         public System.DateTime volunteeringDate { get; set; }
         public int wardCode { get; set; }
         public int roleCode { get; set; }
-        public System.TimeSpan beginningTime { get; set; }
-        public System.TimeSpan endTime { get; set; }
+        public int beginningTime { get; set; }
+        public int endTime { get; set; }
 
        
     }

@@ -21,5 +21,6 @@ namespace DAL
         public int volunteerPriorityLevel { get; set; }
     
         public virtual Volunteer Volunteer { get; set; }
+        public virtual role role { get; set; }
     }
 }

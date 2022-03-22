@@ -16,8 +16,8 @@ namespace DAL
     {
         public int daysForAVolunteerCode { get; set; }
         public int dayInTheWeek { get; set; }
-        public System.TimeSpan beginningTime { get; set; }
-        public System.TimeSpan endTime { get; set; }
+        public int beginningTime { get; set; }
+        public int endTime { get; set; }
         public int VolunteerOffersCode { get; set; }
     
         public virtual VolunteerOffer VolunteerOffer { get; set; }

@@ -6,6 +6,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using BL;
+using BL.algorithm;
 
 namespace API.Controllers
 {
@@ -45,12 +47,18 @@ namespace API.Controllers
             return Ok(true);
         }
 
-        [Route ("GETabc")]
+        [Route("GETabc")]
         public int GETabc()
-        { 
+        {
+            InitialPopulation v = new InitialPopulation();
+           
             return 2;
         }
-        
 
+        [Route("GetAllVolunteers")]
+        public List<volunteerDTO> GetAllVolunteers()
+        {
+         return volunteerBL.getAllVolunteers().Select(v => BL.converts.volunteersConvert.convertVolunteerToDTO(v)).ToList(); ;
+        }
     }
 }

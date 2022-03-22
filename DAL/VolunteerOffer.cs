@@ -24,6 +24,7 @@ namespace DAL
         public int VolunteerCode { get; set; }
         public int TotalNumberOfHoursPerWeek { get; set; }
         public bool flexible { get; set; }
+        public System.DateTime offersDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<daysForAVolunteer> daysForAVolunteers { get; set; }

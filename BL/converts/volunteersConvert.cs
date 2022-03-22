@@ -26,5 +26,24 @@ namespace BL.converts
                 volunteerUsername=volunteer.volunteerUsername
             };
         }
+
+
+        public static volunteerDTO convertVolunteerToDTO(Volunteer volunteer)
+        {
+            return new volunteerDTO
+            {
+                VolunteerCode = volunteer.VolunteerCode,
+                VolunteerID = volunteer.VolunteerID,
+                VolunteerFirstName = volunteer.VolunteerFirstName,
+                VolunteerLastName = volunteer.VolunteerLastName,
+                VolunteerDateOfBirth = volunteer.VolunteerDateOfBirth,
+                VolunteerPhone = volunteer.VolunteerPhone,
+                VolunteerAddress = volunteer.VolunteerAddress,
+                VolunteerGmail = volunteer.VolunteerGmail,
+                VolunteerPassword = volunteer.VolunteerPassword,
+                volunteerUsername = volunteer.volunteerUsername
+            };
+        }
+        
     }
 }

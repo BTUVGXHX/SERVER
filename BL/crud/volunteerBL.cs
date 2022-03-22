@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL;
 using DTO;
-using System.Data.Entity;//כדי שיהיה ניתן להשתמש בנתונים גם אחרי 
+using System.Data.Entity;//כדי שיהיה ניתן להשתמש בנתונים גם אחרי  
 
 namespace BL
 {
@@ -28,14 +28,15 @@ namespace BL
                 db.SaveChanges();
             }
         }
-         public static List<Volunteer> getAllVolunteers()
+
+        public static List<Volunteer> getAllVolunteers()
         {
             using (VolunteerPlacementSystemDBEntities1 db = new VolunteerPlacementSystemDBEntities1())
             {
-                return db.Volunteers.Include(v=>v.roleForVolunteers).Include(v=>v.VolunteerOffers)
+                return db.Volunteers.Include(v => v.roleForVolunteers).Include(v => v.VolunteerOffers)
                     .Include("VolunteerOffers.daysForAVolunteers").ToList();
             }
-           
-            }
+        }
+
     }
 }

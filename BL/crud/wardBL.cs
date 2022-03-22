@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
+using System.Data.Entity;
 namespace BL
 {
   public  class wardBL
@@ -31,8 +32,11 @@ namespace BL
         {
             using(VolunteerPlacementSystemDBEntities1 db=new VolunteerPlacementSystemDBEntities1())
             {
-                return db.wards
+                return db.wards.Include(w=>w.volunteeringForWards).ToList();
             }
         }
+
+
+
     }
 }

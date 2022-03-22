@@ -18,8 +18,8 @@ namespace DAL
         public int wardCode { get; set; }
         public int roleCode { get; set; }
         public int numberVolunteersForWard { get; set; }
-        public System.TimeSpan beginningTime { get; set; }
-        public System.TimeSpan endTime { get; set; }
+        public int beginningTime { get; set; }
+        public int endTime { get; set; }
     
         public virtual role role { get; set; }
         public virtual ward ward { get; set; }
