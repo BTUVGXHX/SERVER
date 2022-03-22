@@ -25,6 +25,7 @@ namespace BL.algorithm
             WardLogicData = wardBL.getAllWards().Select(w => new WardLogicData(w)).ToList();
 
             int m;
+             Random rnd = new Random();
             for (int i = 0; i < WardLogicData.Count; i++)
             {
                 for (int j = 0; j < WardLogicData[i].VolunteersForTheWard.Length; j++)
@@ -38,9 +39,9 @@ namespace BL.algorithm
                             {
                                 for (int o = 0; o < item.NumOfVolunteerPerWard.Length; o++)
                                 {
-                                    Random rnd = new Random();
-                                    m = rnd.Next(0, VolunteerLogicData.Count);
-                                    item.NumOfVolunteerPerWard[o] = m;
+                                   
+                                    m = rnd.Next(1, VolunteerLogicData.Count);
+                                    item.NumOfVolunteerPerWard[o] =  VolunteerLogicData.ElementAt(m).Volunteer.VolunteerCode;;
                                 }
                             }
                            
@@ -71,7 +72,7 @@ namespace BL.algorithm
             //        {
             //            size = volunteerinForWards[j].NumOfVolunteerPerWard.Length;
             //            volunteerinForWards[j].NumOfVolunteerPerWard[--size] =
-            //                VolunteerLogicData.ElementAt(m).Volunteer.VolunteerCode;
+            //               
 
             //        }
             //    }
