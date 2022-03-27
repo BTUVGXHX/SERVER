@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,11 @@ namespace API
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            GlobalConfiguration.Configuration
+            .Formatters
+            .JsonFormatter
+            .SerializerSettings
+            .ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
     }
 }

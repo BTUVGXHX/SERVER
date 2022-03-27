@@ -32,8 +32,7 @@ namespace BL.algorithm
 
             //???  האם לאתחל כל פעם מחדש
           int  j = lastOffer.TotalNumberOfHoursPerWeek;//Number Of Hours Per Week
-                                                       //todo ריצה על ההצעה האחרונה
-
+                                                     
             foreach (var item in lastOffer.daysForAVolunteers)
             {
                 for (int i = item.beginningTime; i < item.endTime; i++)

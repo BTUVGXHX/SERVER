@@ -19,12 +19,13 @@ namespace BL.algorithm
         {
 
             //מאתחל לכל מתנדב את השעות והתפקידים האפשריים 
-          //  VolunteerLogicData = volunteerBL.getAllVolunteers().Select(v => new VolunteerLogicData(v)).ToList();
+            //  VolunteerLogicData = volunteerBL.getAllVolunteers().Select(v => new VolunteerLogicData(v)).ToList();
 
             //מאתחל לכל מחלקה מערך כגודל מספר המתנדבים הרצוי לשעה
             WardLogicData = wardBL.getAllWards().Select(w => new WardLogicData(w)).ToList();
 
             int m;
+            Random rnd = new Random();
             for (int i = 0; i < WardLogicData.Count; i++)
             {
                 for (int j = 0; j < WardLogicData[i].VolunteersForTheWard.Length; j++)
@@ -38,47 +39,19 @@ namespace BL.algorithm
                             {
                                 for (int o = 0; o < item.NumOfVolunteerPerWard.Length; o++)
                                 {
-                                    Random rnd = new Random();
                                     m = rnd.Next(0, VolunteerLogicData.Count);
-                                    item.NumOfVolunteerPerWard[o] = m;
+                                    item.NumOfVolunteerPerWard[o] = VolunteerLogicData.ElementAt(m).Volunteer.VolunteerCode;
                                 }
                             }
-                           
                         }
                     }
                 }
             }
 
-            
-
-
-
-
-
-
-
-            //    int  size;
-
-            //    foreach (var volunteerinForWards in ward.VolunteersForTheWard)
-            //    {
-
-
-
-
-
-            //        //????
-            //        for (int j = 0; j < 24; j++)
-            //        {
-            //            size = volunteerinForWards[j].NumOfVolunteerPerWard.Length;
-            //            volunteerinForWards[j].NumOfVolunteerPerWard[--size] =
-            //                VolunteerLogicData.ElementAt(m).Volunteer.VolunteerCode;
-
-            //        }
-            //    }
-
         }
     }
-    }
+}
 
-   
+
+
 
