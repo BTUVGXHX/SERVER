@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace BL.algorithm
 {
-  public class VolunteerLogicData
+    public class VolunteerLogicData
     {
         public Volunteer Volunteer { get; set; }
 
@@ -16,28 +16,30 @@ namespace BL.algorithm
         public bool[,] OptinalHours { get; set; } = new bool[6, 24];
 
         //תפקידים אפשריים למתנדב
-        public Dictionary<int, bool> OptinalRolrs { get; set; } = new Dictionary<int, bool>();
+        public Dictionary<int, bool> OptinalRoles { get; set; } = new Dictionary<int, bool>();
 
 
         public VolunteerLogicData(Volunteer volunteer)
         {
             Volunteer = volunteer;
-          
-           OptinalRolrs= roleBL.getAllRoles().ToDictionary
-                (r => r.roleCode, vol => Volunteer.roleForVolunteers.
-                Any(u => vol.roleCode == u.roleCode));
+
+            OptinalRoles = roleBL.getAllRoles().ToDictionary
+                 (r => r.roleCode, vol => Volunteer.roleForVolunteers.
+                 Any(u => vol.roleCode == u.roleCode));
 
             var lastOffer = Volunteer.VolunteerOffers.OrderByDescending
                 (o => o.offersDate).FirstOrDefault();
 
             //???  האם לאתחל כל פעם מחדש
-          int  j = lastOffer.TotalNumberOfHoursPerWeek;//Number Of Hours Per Week
-                                                     
-            foreach (var item in lastOffer.daysForAVolunteers)
+            //int? j = lastOffer?.TotalNumberOfHoursPerWeek;//Number Of Hours Per Week
+            if (lastOffer != null)
             {
-                for (int i = item.beginningTime; i < item.endTime; i++)
+                foreach (var item in lastOffer?.daysForAVolunteers)
                 {
-                    OptinalHours[item.dayInTheWeek, i] = true;
+                    for (int i = item.beginningTime; i < item.endTime; i++)
+                    {
+                        OptinalHours[item.dayInTheWeek, i] = true;
+                    }
                 }
             }
 

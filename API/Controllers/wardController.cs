@@ -50,8 +50,8 @@ namespace API.Controllers
         [Route("GETabc")]
         public int GETabc()
         {
+            
             InitialPopulation v = new InitialPopulation();
-           
             return 2;
         }
 

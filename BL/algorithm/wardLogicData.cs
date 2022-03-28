@@ -12,25 +12,17 @@ namespace BL.algorithm
         //public List<ward> allWards { get; set; }
         public ward CurWard { get; set; }
         //מתנדבים לכל מחלקה
-        public List<VolunteerinForWardLogicData>[,] VolunteersForTheWard { get; set; }
-            = new List<VolunteerinForWardLogicData>[6, 24];
+        public List<VolunteerinForWardLogicData> VolunteerinForWardLogicData { get; set; }
 
         //אתחול נתוני המחלקה
         public WardLogicData(ward ward)
         {
             CurWard = ward;
             CurWard.volunteeringForWards = CurWard.volunteeringForWards.OrderBy(v => v.beginningTime).ToList();
-
-            for (int i = 0; i < 6; i++)
+            VolunteerinForWardLogicData = new List<VolunteerinForWardLogicData>();
+            foreach (volunteeringForWard role in CurWard.volunteeringForWards)
             {
-                foreach (var item in CurWard.volunteeringForWards)
-                {
-                    for (int j = item.beginningTime; j < item.endTime; j++)
-                    {
-                        VolunteersForTheWard[i, j] = new List<VolunteerinForWardLogicData>();
-                        VolunteersForTheWard[i, j].Add(new VolunteerinForWardLogicData(item));
-                    }
-                }
+                VolunteerinForWardLogicData.Add(new  VolunteerinForWardLogicData(role));
             }
 
         }

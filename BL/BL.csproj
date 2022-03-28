@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="algorithm\InitialPopulation.cs" />
     <Compile Include="algorithm\VolunteerinForWardLogicData.cs" />
+    <Compile Include="algorithm\VolunteeringHour.cs" />
     <Compile Include="algorithm\VolunteerLogicData.cs" />
     <Compile Include="algorithm\wardLogicData.cs" />
     <Compile Include="converts\daysForAVolunteerConverts.cs" />
