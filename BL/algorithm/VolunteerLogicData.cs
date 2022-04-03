@@ -10,31 +10,25 @@ namespace BL.algorithm
 {
     public class VolunteerLogicData
     {
-        public Volunteer Volunteer { get; set; }
-
-        //שעות התנדבות אפשריות למתנדב
+        public Volunteer CurrentVolunteer { get; set; }
         public bool[,] OptinalHours { get; set; } = new bool[6, 24];
-
-        //תפקידים אפשריים למתנדב
         public Dictionary<int, bool> OptinalRoles { get; set; } = new Dictionary<int, bool>();
-
+        public VolunteerOffer LastOffer { get; set; }
 
         public VolunteerLogicData(Volunteer volunteer)
         {
-            Volunteer = volunteer;
+            CurrentVolunteer = volunteer;
 
             OptinalRoles = roleBL.getAllRoles().ToDictionary
-                 (r => r.roleCode, vol => Volunteer.roleForVolunteers.
+                 (r => r.roleCode, vol => CurrentVolunteer.roleForVolunteers.
                  Any(u => vol.roleCode == u.roleCode));
 
-            var lastOffer = Volunteer.VolunteerOffers.OrderByDescending
-                (o => o.offersDate).FirstOrDefault();
+            LastOffer = CurrentVolunteer.VolunteerOffers.OrderByDescending
+               (o => o.offersDate).FirstOrDefault();
 
-            //???  האם לאתחל כל פעם מחדש
-            //int? j = lastOffer?.TotalNumberOfHoursPerWeek;//Number Of Hours Per Week
-            if (lastOffer != null)
+            if (LastOffer != null)
             {
-                foreach (var item in lastOffer?.daysForAVolunteers)
+                foreach (var item in LastOffer?.daysForAVolunteers)
                 {
                     for (int i = item.beginningTime; i < item.endTime; i++)
                     {
@@ -43,6 +37,16 @@ namespace BL.algorithm
                 }
             }
 
+        }
+
+        public bool VolunteerCheck(int role, int beginningTime, int endTime)
+        {
+            bool flag = true;
+
+            flag = LastOffer.daysForAVolunteers.
+                Any(d => d.beginningTime == beginningTime && d.endTime == endTime);
+
+            return OptinalRoles.ContainsKey(role) && flag;
         }
 
     }

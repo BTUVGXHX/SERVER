@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\nava asis\Desktop\SERVER\DAL\Model.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\nava asis\Desktop\New folder\פרוייקט גמר\SERVER\DAL\Model.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

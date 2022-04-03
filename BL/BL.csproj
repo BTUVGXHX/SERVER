@@ -51,11 +51,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="algorithm\Class1.cs" />
+    <Compile Include="algorithm\IChromosome.cs" />
+    <Compile Include="algorithm\IGen.cs" />
     <Compile Include="algorithm\InitialPopulation.cs" />
-    <Compile Include="algorithm\VolunteerinForWardLogicData.cs" />
-    <Compile Include="algorithm\VolunteeringHour.cs" />
+    <Compile Include="algorithm\ScheduleOption.cs" />
+    <Compile Include="algorithm\VolunteeringForWardLogicData.cs" />
     <Compile Include="algorithm\VolunteerLogicData.cs" />
-    <Compile Include="algorithm\wardLogicData.cs" />
     <Compile Include="converts\daysForAVolunteerConverts.cs" />
     <Compile Include="converts\roleForVolunteerConverts.cs" />
     <Compile Include="converts\volunteeringForWardConverts.cs" />
@@ -63,6 +65,7 @@
     <Compile Include="converts\volunteersConvert.cs" />
     <Compile Include="converts\wardConverts.cs" />
     <Compile Include="converts\wardDirectorConverts.cs" />
+    <Compile Include="algorithm\AllVolunteers.cs" />
     <Compile Include="crud\daysForAVolunteerBL.cs" />
     <Compile Include="converts\embeddedVolunteerConverts.cs" />
     <Compile Include="crud\embeddedVolunteerBL.cs" />
